@@ -17,12 +17,19 @@ def homepage():
 @app.route('/froyo')
 def choose_froyo():
     """Shows a form to collect the user's Fro-Yo order."""
-    pass
+    return """
+     <form action="/froyo_results" method="GET">
+        What is your favorite Fro-Yo flavor? <br/>
+        <input type="text" name="flavor"><br/>
+        <input type="submit" value="Submit!">
+        </form>
+        """
 
 @app.route('/froyo_results')
 def show_froyo_results():
-    """Shows the user what they ordered from the previous page."""
-    pass
+    user_foryo_flavor = request.arg.get('flavor')
+    return f"You ordered {user_foryo_flavor} flavored FroYo!"
+    
 
 @app.route('/favorites')
 def favorites():
